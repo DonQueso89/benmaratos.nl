@@ -1,40 +1,33 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Poem = () => (
-    <>
-  <h3>Amsterdam</h3>
-  <p>
-    Vastgoed hier vastgoed daar
-    <br/>
-    Losgoed hier wasgoed daar
-    <br/>
-    Vastgoed hier landgoed daar
-    <br/>
-    Kopen kopen kopen maar
-    <br/>
-    Vroom vroom
-    <br/>
-    Kleng kleng
-    <br/>
-    Beng beng
-    <br/>
-    En die boom
-    <br/>
-    staat daar nog steeds van jou te genieten
-  </p>
-  </>
-)
-
-const Poems = () => (
-  <Layout>
-    <SEO title="Poems" />
-    <Poem />
-    <Link to="/">Home</Link>
+const Poems = ({ data }) => {
+  return <Layout>
+    <SEO title="Gedichten" />
+    {data.allMarkdownRemark.edges.map(({ node }) => (
+      <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+    ))}
   </Layout>
-)
+}
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(filter: { fileAbsolutePath: { glob: "**/poems/*.md" } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`
 
 export default Poems

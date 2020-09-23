@@ -4,13 +4,13 @@ html {
   font: 112.5%/1.45em 'EB Garamond', serif;
   box-sizing: border-box;
   overflow-y: scroll;
+  background-color: rgba(20, 20, 20, .05);
 }
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: "EB Garamond", serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -26,13 +26,19 @@ figcaption,
 figure,
 footer,
 header,
-main,
 menu,
 nav,
 section,
 summary {
   display: block;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 audio,
 canvas,
 progress,
@@ -53,10 +59,12 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  color: black
 }
 a:active,
 a:hover {
   outline-width: 0;
+  color: whiteSmoke;
 }
 abbr[title] {
   border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
@@ -81,8 +89,6 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
   line-height: 1.1;
@@ -126,7 +132,6 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace;
   font-size: 1em;
 }
 figure {
@@ -259,8 +264,6 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
   line-height: 1.1;
@@ -275,8 +278,6 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
   line-height: 1.1;
@@ -291,8 +292,6 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
   line-height: 1.1;
@@ -307,8 +306,6 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
   line-height: 1.1;
@@ -323,8 +320,6 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "EB Garamond", serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
   line-height: 1.1;
@@ -561,8 +556,6 @@ tt,
 code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
-  font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-    "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -588,4 +581,8 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.active {
+  color: whitesmoke;
 }
