@@ -1,27 +1,33 @@
 import React from "react"
+import { Link, graphql } from "gatsby"
+
 import Layout from "../components/layout"
-import { graphql } from "gatsby"
 import SEO from "../components/seo"
 
-
 const Stories = ({ data }) => {
-    return <Layout >
+  return <Layout>
     <SEO title="Verhalen" />
-
-    </Layout>
+    {data.allMarkdownRemark.edges.map(({ node }) => (
+      <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+    ))}
+  </Layout>
 }
 
 export const query = graphql`
-    query storyTitles {
-    allMarkdownRemark(filter: {fileAbsolutePath: {glob: "**/stories/*.md"}}) {
-        edges {
+  query {
+    allMarkdownRemark(filter: { fileAbsolutePath: { glob: "**/stories/*.md" } }) {
+      edges {
         node {
-            frontmatter {
+          frontmatter {
             title
-            }
+          }
+          fields {
+            slug
+          }
         }
-        }
+      }
     }
-    }
+  }
 `
-export default Stories;
+
+export default Stories
