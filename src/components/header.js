@@ -21,7 +21,7 @@ const Header = ({ siteTitle }) => (
         justifyContent: `flex-end`
       }}
     >
-      <h1 style={{ flex: 1, marginRight: `auto`, marginBottom: 0 }}>
+      <h1 style={{ flex: 1, marginRight: `auto`, marginBottom: 0, fontSize: "2.25rem" }}>
         <Link
           to="/"
           style={{
@@ -33,7 +33,7 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
       <h4 style={{marginRight: `20px`, textDecoration: `none` }}>
-        <ActivatableLink to="/poems/">Gedichten</ActivatableLink>
+        <ActivatableLink to="/poems/#0">Gedichten</ActivatableLink>
       </h4>
       <h4 style={{marginRight: `20px`, textDecoration: `none` }}>
         <ActivatableLink to="/stories/">Verhalen</ActivatableLink>
