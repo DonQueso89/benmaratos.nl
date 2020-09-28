@@ -6,30 +6,33 @@ import SEO from "../components/seo"
 import Poem from "../components/poem"
 
 const Poems = ({ data, location }) => {
-  const payload = data.allMarkdownRemark.edges
-  const poemIdx = parseInt(location.hash.replace("#", "")) || 0
-  const [poem, next, last] = [payload[poemIdx], payload[poemIdx + 1], payload[poemIdx - 1]]
+  const nodesBySlug = data.allMarkdownRemark.edges.reduce((acc, { node }) => Object.assign(acc, {[node.fields.slug]: node}), {})
+  const values = Object.values(nodesBySlug)
+  const poem = nodesBySlug[location.hash.replace("#", "")] || values[0]
+
+  const poemIdx = values.findIndex(x => x.fields.slug === poem.fields.slug)
+  const next = values[poemIdx + 1]
+  const prev = values[poemIdx - 1]
 
   useEffect(() => {
-    console.log("attaching eventhandler to document")
     const handleKeyDown = (e) => {
       if (e.keyCode === 39 && next) {
-        navigate(`#${poemIdx + 1}`)
+        navigate(`/poems/#${next.fields.slug}`)
       }
-      if (e.keyCode === 37 && last) {
-        navigate(`#${poemIdx - 1}`)
+      if (e.keyCode === 37 && prev) {
+        navigate(`/poems/#${prev.fields.slug}`)
       }
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [next, last, poemIdx, location.hash])
+  }, [next, prev])
 
 
   return <Layout>
       <SEO title="Gedichten" />
-      { last &&  <Link to={`/poems/#${poemIdx - 1}`}><h1 style={{position: "fixed", left: 8, bottom: "50%"}}>&#60;</h1></Link>}
-        <Poem payload={poem.node}/>
-      { next &&  <Link to={`/poems/#${poemIdx + 1}`}><h1 style={{position: "fixed", right: 8, bottom: "50%"}}>&#62;</h1></Link>}
+      { prev &&  <Link to={`/poems/#${prev.fields.slug}`}><h1 style={{position: "fixed", left: 8, bottom: "50%"}}>&#60;</h1></Link>}
+        <Poem payload={poem}/>
+      { next &&  <Link to={`/poems/#${next.fields.slug}`}><h1 style={{position: "fixed", right: 8, bottom: "50%"}}>&#62;</h1></Link>}
   </Layout>
 }
 

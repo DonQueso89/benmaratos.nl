@@ -33,7 +33,7 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
       <h4 style={{marginRight: `20px`, textDecoration: `none` }}>
-        <ActivatableLink to="/poems/#0">Gedichten</ActivatableLink>
+        <ActivatableLink to="/poems/">Gedichten</ActivatableLink>
       </h4>
       <h4 style={{marginRight: `20px`, textDecoration: `none` }}>
         <ActivatableLink to="/stories/">Verhalen</ActivatableLink>
