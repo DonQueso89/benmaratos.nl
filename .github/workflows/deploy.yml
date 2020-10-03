@@ -17,5 +17,8 @@ jobs:
                 GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
                 GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
                 GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLEDRIVEFOLDERID }}
-            - name: "List contents"
-              run: ls src/data/
+            - name: "Deploy"
+              run: surge publish public
+              env:
+                SURGE_TOKEN: ${{ secrets.SURGE_DEPLOY_TOKEN }}
+                SURGE_DOMAIN: ${{ secrets.SURGE_DOMAIN }}
