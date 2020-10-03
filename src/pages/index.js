@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 
 import SEO from "../components/seo"
@@ -17,15 +17,20 @@ const componentStyle = {
 }
 
 const Review = ({ title, newsPaper, ...extraStyle }) => {
-  const [opacity, setOpacity ] = useState(0)
+  const [opacity, setOpacity] = useState(0)
   useEffect(() => {
     setOpacity(1.0)
   }, [setOpacity])
   return (
-    <div className={"review"} style={{ opacity, position: "relative", ...extraStyle }}>
-      <h4 style={{ marginBottom: 2}}>{title}</h4>
-      <hr style={{marginBottom: 4}}></hr>
-      <p style={{ fontStyle: "italic" }}>{newsPaper} | &#9733;&#9733;&#9733;&#9733;&#9733; </p>
+    <div
+      className={"review"}
+      style={{ opacity, position: "relative", ...extraStyle }}
+    >
+      <h4 style={{ marginBottom: 2 }}>{title}</h4>
+      <hr style={{ marginBottom: 4 }}></hr>
+      <p style={{ fontStyle: "italic" }}>
+        {newsPaper} | &#9733;&#9733;&#9733;&#9733;&#9733;{" "}
+      </p>
     </div>
   )
 }
@@ -37,7 +42,9 @@ const IndexPage = ({ data }) => {
       <div style={{ display: "flex", justifyContent: "row" }}>
         <div style={componentStyle}>
           <Review
-            title={'"Zijn verhalen lezen als een lollige rouwkaart zonder einde"'}
+            title={
+              '"Zijn verhalen lezen als een lollige rouwkaart zonder einde"'
+            }
             newsPaper={"Dagelijks Dagblad"}
           />
         </div>

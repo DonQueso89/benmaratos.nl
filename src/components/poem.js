@@ -4,14 +4,13 @@ import poemStyles from "../styles/poems.module.css"
 //import Layout from "./layout"
 import SEO from "./seo"
 
-
 const Poem = ({ payload }) => {
   return (
     <div>
-      <SEO title={payload.frontmatter.title}/>
+      <SEO title={payload.frontmatter.title} />
       <div className={poemStyles.poem}>
         <h3>{payload.frontmatter.title}</h3>
-        <div dangerouslySetInnerHTML={{__html: payload.html}}/>
+        <div dangerouslySetInnerHTML={{ __html: payload.html }} />
       </div>
     </div>
   )

@@ -1,9 +1,9 @@
-import Typography from "typography";
-import altonTheme from 'typography-theme-alton';
+import Typography from "typography"
+import altonTheme from "typography-theme-alton"
 
-altonTheme.headerFontFamily = [ "Droid Sans Mono" ]
-altonTheme.headerWeight = 'normal'
+altonTheme.headerFontFamily = ["Droid Sans Mono"]
+altonTheme.headerWeight = "normal"
 
-const typography = new Typography(altonTheme);
+const typography = new Typography(altonTheme)
 
-export default typography;
+export default typography

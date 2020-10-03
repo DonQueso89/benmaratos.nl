@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 const path = require("path")
 
 module.exports = {
@@ -26,14 +26,14 @@ module.exports = {
       },
     },
     {
-      resolve: '@fs/gatsby-plugin-drive',
+      resolve: "@fs/gatsby-plugin-drive",
       options: {
         folderId: process.env.GOOGLE_DRIVE_FOLDER_ID,
         keyFile: process.env.GOOGLE_PRIVATE_KEYFILE,
-        destination: path.join(__dirname, 'src/data'),
+        destination: path.join(__dirname, "src/data"),
         //exportMiddleware: someFunction
-      }
-    }
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
