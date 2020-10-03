@@ -1,15 +1,24 @@
 import React from "react"
-
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const Bio = () => (
+const Bio = ({ data }) => (
   <Layout>
     <SEO title="Bio" />
     <p style={{maxWidth: "50%"}}>
-      Mijn eerste "publicatie" is een gedicht op het vrouwentoilet van mijn stamkroeg. Volgens mijn vriend en de eigenaar wordt er veel over gesproken. De vrouwen komen stralend van de plee en gaan glijdend naar huis omdat er zo van hen gehouden wordt.<br/><br/> Ik ben de maker onder pseudoniem en niemand houdt van mij.
+      <div dangerouslySetInnerHTML={{__html: data.allMarkdownRemark.nodes[0].html}}/>
     </p>
   </Layout>
 )
 
 export default Bio
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(filter: {fileAbsolutePath: {glob: "**/data/metadata/bio.md"}}) {
+      nodes {
+        html
+      }
+    }
+  }`

@@ -8,7 +8,7 @@ import Poem from "../components/poem"
 const Poems = ({ data, location }) => {
   const nodesBySlug = data.allMarkdownRemark.edges.reduce((acc, { node }) => Object.assign(acc, {[node.fields.slug]: node}), {})
   const values = Object.values(nodesBySlug)
-  const poem = nodesBySlug[location.hash.replace("#", "")] || values[0]
+  const poem = nodesBySlug[decodeURI(location.hash.replace("#", ""))] || values[0]
 
   const poemIdx = values.findIndex(x => x.fields.slug === poem.fields.slug)
   const next = values[poemIdx + 1]
