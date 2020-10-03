@@ -18,7 +18,4 @@ jobs:
                 GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
                 GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLEDRIVEFOLDERID }}
             - name: "Deploy"
-              run: surge publish public
-              env:
-                SURGE_TOKEN: ${{ secrets.SURGE_DEPLOY_TOKEN }}
-                SURGE_DOMAIN: ${{ secrets.SURGE_DOMAIN }}
+              run: surge public ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_DEPLOY_TOKEN }}
