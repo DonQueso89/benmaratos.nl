@@ -29,7 +29,10 @@ module.exports = {
       resolve: "@fs/gatsby-plugin-drive",
       options: {
         folderId: process.env.GOOGLE_DRIVE_FOLDER_ID,
-        keyFile: process.env.GOOGLE_PRIVATE_KEYFILE,
+        key: {
+            private_key: process.env.GOOGLE_PRIVATE_KEY,
+            client_email: process.env.GOOGLE_CLIENT_EMAIL,
+          },
         destination: path.join(__dirname, "src/data"),
         //exportMiddleware: someFunction
       },

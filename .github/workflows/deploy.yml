@@ -1,0 +1,20 @@
+name: build-and-deploy
+on:
+    push:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Build and deploy"
+                with:
+                    GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
+                    GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+                    GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLEDRIVEFOLDERID }}
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+            - run: npm i -g surge
+            - run: npm i
+            - run: npx gatsby build
+            - run: env
