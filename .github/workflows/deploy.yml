@@ -14,6 +14,6 @@ jobs:
             - name: "Build"
               run: npx gatsby build
               env: 
-                DATO_CMS_API_TOKEN: ${{ secrets.DATO_DMS_API_TOKEN }}
+                DATO_CMS_API_TOKEN: ${{ secrets.DATO_CMS_API_TOKEN }}
             - name: "Deploy"
               run: surge public ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_DEPLOY_TOKEN }}
