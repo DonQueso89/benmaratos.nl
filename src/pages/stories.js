@@ -8,8 +8,8 @@ const Stories = ({ data }) => {
   return (
     <Layout>
       <SEO title="Verhalen" />
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+      {data.allDatoCmsStory.edges.map(({ node }) => (
+        <Link to={node.slug}>{node.title}</Link>
       ))}
     </Layout>
   )
@@ -17,17 +17,11 @@ const Stories = ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { glob: "**/stories/*.md" } }
-    ) {
+    allDatoCmsStory(sort: { fields: date, order: DESC }) {
       edges {
         node {
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
+          slug
+          title
         }
       }
     }

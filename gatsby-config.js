@@ -26,15 +26,11 @@ module.exports = {
       },
     },
     {
-      resolve: "@fs/gatsby-plugin-drive",
+      resolve: `gatsby-source-datocms`,
       options: {
-        folderId: process.env.GOOGLE_DRIVE_FOLDER_ID,
-        key: {
-            private_key: process.env.GOOGLE_PRIVATE_KEY,
-            client_email: process.env.GOOGLE_CLIENT_EMAIL,
-          },
-        destination: path.join(__dirname, "src/data"),
-        //exportMiddleware: someFunction
+        apiToken: process.env.DATO_CMS_API_TOKEN,
+        preview: false,
+        disableLiveReload: true,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

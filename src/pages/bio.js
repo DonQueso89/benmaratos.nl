@@ -9,7 +9,7 @@ const Bio = ({ data }) => (
     <p style={{ maxWidth: "50%" }}>
       <div
         dangerouslySetInnerHTML={{
-          __html: data.allMarkdownRemark.nodes[0].html,
+          __html: data.datoCmsBio.bodyNode.childMarkdownRemark.html,
         }}
       />
     </p>
@@ -20,11 +20,11 @@ export default Bio
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { glob: "**/data/metadata/bio.md" } }
-    ) {
-      nodes {
-        html
+    datoCmsBio {
+      bodyNode {
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }

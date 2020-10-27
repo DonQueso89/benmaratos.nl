@@ -7,10 +7,10 @@ import SEO from "./seo"
 const Poem = ({ payload }) => {
   return (
     <div>
-      <SEO title={payload.frontmatter.title} />
+      <SEO title={payload.title} />
       <div className={poemStyles.poem}>
-        <h3>{payload.frontmatter.title}</h3>
-        <div dangerouslySetInnerHTML={{ __html: payload.html }} />
+        <h3>{payload.title}</h3>
+        <div dangerouslySetInnerHTML={{ __html: payload.bodyNode.childMarkdownRemark.html }} />
       </div>
     </div>
   )

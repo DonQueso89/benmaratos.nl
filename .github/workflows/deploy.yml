@@ -14,8 +14,6 @@ jobs:
             - name: "Build"
               run: npx gatsby build
               env: 
-                GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
-                GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
-                GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLEDRIVEFOLDERID }}
+                DATO_CMS_API_TOKEN: ${{ secrets.DATO_DMS_API_TOKEN }}
             - name: "Deploy"
               run: surge public ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_DEPLOY_TOKEN }}
