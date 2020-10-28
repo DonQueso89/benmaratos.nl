@@ -20,9 +20,9 @@ jobs:
             - name: "Deploy"
               run: surge public ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_DEPLOY_TOKEN }}
             - name: "Notify DatoCMS of success"
-                if: ${{ success() }}
-                uses: wei/curl@v1
-                with:
+              if: ${{ success() }}
+              uses: wei/curl@v1
+              with:
                     args: -n -X POST https://webhooks.datocms.com/${{ secrets.DATO_CMS_NOTIFY_HASH }}/deploy-results -H 'Content-Type: application/json' -d '{ "status": "success" }'
             - name: "Notify DatoCMS of failure"
               if: ${{ failure() }}
