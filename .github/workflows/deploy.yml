@@ -23,9 +23,9 @@ jobs:
               if: ${{ success() }}
               uses: wei/curl@v1
               with:
-                    args: -n -X POST https://webhooks.datocms.com/${{ secrets.DATO_CMS_NOTIFY_HASH }}/deploy-results -H 'Content-Type: application/json' -d '{ "status": "success" }'
+                args: -n -X POST https://webhooks.datocms.com/${{ secrets.DATO_CMS_NOTIFY_HASH }}/deploy-results -H 'Content-Type: application/json' -d '{ "status": "success" }'
             - name: "Notify DatoCMS of failure"
               if: ${{ failure() }}
               uses: wei/curl@v1
               with:
-                  args: -n -X POST https://webhooks.datocms.com/${{ secrets.DATO_CMS_NOTIFY_HASH }}/deploy-results -H 'Content-Type: application/json' -d '{ "status": "error" }'
+                args: -n -X POST https://webhooks.datocms.com/${{ secrets.DATO_CMS_NOTIFY_HASH }}/deploy-results -H 'Content-Type: application/json' -d '{ "status": "error" }'
