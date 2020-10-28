@@ -11,7 +11,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v1
-            - run: echo ${{ github.event.client_payload}}
+            - run: echo ${{ github.event.client_payload.event_type}}
             - run: npm i -g surge
             - run: npm i
             - name: "Build"
