@@ -1,67 +1,27 @@
-import React, { useEffect } from "react"
-import { Link, graphql, navigate } from "gatsby"
+import React from "react"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Poem from "../components/poem"
 
-const Poems = ({ data, location }) => {
-  const nodesBySlug = data.allDatoCmsPoem.edges.reduce(
-    (acc, { node }) => Object.assign(acc, { [node.slug]: node }),
-    {}
-  )
-  const values = Object.values(nodesBySlug)
-  const poem =
-    nodesBySlug[decodeURI(location.hash.replace("#", ""))] || values[0]
-
-  const poemIdx = values.findIndex(x => x.slug === poem.slug)
-  const next = values[poemIdx + 1]
-  const prev = values[poemIdx - 1]
-
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.keyCode === 39 && next) {
-        navigate(`/poems/#${next.slug}`)
-      }
-      if (e.keyCode === 37 && prev) {
-        navigate(`/poems/#${prev.slug}`)
-      }
-    }
-    document.addEventListener("keydown", handleKeyDown)
-    return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [next, prev])
-
+const Poems = ({ data }) => {
   return (
     <Layout>
       <SEO title="Gedichten" />
-      {prev && (
-        <Link to={`/poems/#${prev.slug}`}>
-          <h1 style={{ position: "fixed", left: 8, bottom: "50%" }}>&#60;</h1>
-        </Link>
-      )}
-      <Poem payload={poem} />
-      {next && (
-        <Link to={`/poems/#${next.slug}`}>
-          <h1 style={{ position: "fixed", right: 8, bottom: "50%" }}>&#62;</h1>
-        </Link>
-      )}
+      {data.allDatoCmsPoem.edges.map(({ node }) => (
+        <Link to={`/poemsCarousel/#${node.slug}`}>{node.title}</Link>
+      ))}
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    allDatoCmsPoem {
+    allDatoCmsPoem(sort: { fields: date, order: DESC }) {
       edges {
         node {
-          bodyNode {
-            childMarkdownRemark {
-              html
-            }
-          }
-          title
-          date
           slug
+          title
         }
       }
     }
