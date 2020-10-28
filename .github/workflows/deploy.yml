@@ -3,6 +3,8 @@ on:
     push:
         branches:
             - master
+    repository_dispatch:
+        types: [datocms_deploy_request]
 jobs:
     build:
         runs-on: ubuntu-latest
