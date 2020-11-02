@@ -22,14 +22,14 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   result.data.allDatoCmsStory.edges.forEach(({ node }) => {
-      createPage({
-        path: node.slug,
-        component: path.resolve(`./src/templates/story.js`),
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          slug: node.slug,
-        },
-      })
+    createPage({
+      path: `/stories/${node.slug}/`,
+      component: path.resolve(`./src/templates/story.js`),
+      context: {
+        // Data passed to context is available
+        // in page queries as GraphQL variables.
+        slug: node.slug,
+      },
+    })
   })
 }
