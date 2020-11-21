@@ -66,7 +66,7 @@ const IndexPage = ({ data }) => {
                 to="/"
                 style={{
                   color: `beige`,
-                  opacity: 0.8,
+                  opacity: 0.7,
                   textDecoration: `none`,
                 }}
               >
